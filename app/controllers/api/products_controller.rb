@@ -23,14 +23,32 @@ class Api::ProductsController < ApplicationController
 
   def create
     @product = Product.new(
-      name: = params[:name]
-      price: = params[:price]
-      image_url: = params[:image_url]
-      description: = params[:description]
+      name: params[:name],
+      price: params[:price],
+      image_path: params[:image_path],
+      description: params[:description],
     )
-    product.save
+    @product.save
     render "show.json.jb"
   end
 
+  def update
+    product_id = params[:id]
+    @product = Product.find_by(id: product_id)
+
+    @product.name = params[:name] || @product.name
+    @product.price = params[:price] || @product.price
+    @product.image_path = params[:image_path] || @product.image_path
+    @product.description = params[:description] || @product.description
+
+    @product.save
+    render "show.json.jb"
+  end
+
+  def destroy
+    product = Product.find_by(id: params[:id])
+    product.destroy
+    render json: {message: "Product deleted"}
+  end
 
 end
