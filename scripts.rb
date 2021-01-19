@@ -19,5 +19,4 @@ print "Please enter an image_url: "
 image_url = gets.chomp
 print "Please enter a description: "
 description = gets.chomp
-response3 = HTTP.post("http://localhost:3000/api/products", :form => {:name => "#{name}", :price => "#{price}", :image_url => "#{image_url}", :description => "#{description}"})
-response3.parse
+HTTP.post("http://localhost:3000/api/products", :form => {:name => "#{name}", :price => "#{price}", :image_url => "#{image_url}", :description => "#{description}"})
