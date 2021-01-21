@@ -1,8 +1,9 @@
 class Product < ApplicationRecord
 
-  validates :name, presence: uniqueness
-  validates :price, numericality: true
-  validates :description, length: { minimum: 1, maximum: 140}
+  validates :name, presence: true, uniqueness: true
+  validates :price, numericality: { greater_than: 0 }
+  validates :description, length: { in: 5..500 }
+  # validates :image_url, :with => %r{\.(png|jpg|jpeg)$}i, :message => "incorrect file format", multiline: true
 
   def is_discounted?
     price < 10

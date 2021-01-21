@@ -29,8 +29,11 @@ class Api::ProductsController < ApplicationController
       description: params[:description],
       quantity: params[:quantity],
     )
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: {error: @product.errors.full_messages}, message: :unprocessable_entity
+    end
   end
 
   def update
@@ -40,8 +43,11 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.quantity = params[:quantity] || @product.quantity
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: {error: @product.errors.full_messages}, message: :unprocessable_entity
+    end
   end
 
   def destroy
