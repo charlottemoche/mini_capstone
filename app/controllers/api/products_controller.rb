@@ -1,18 +1,24 @@
 class Api::ProductsController < ApplicationController
   
-  # def first_product_action
-  #   @product = Product.first
-  #   render "first_product.json.jb"
-  # end
-
-  # def second_product_action
-  #   @product = Product.second
-  #   render "first_product.json.jb"
-  # end
 
   def index
     @products = Product.all
+    if params[:discount]
+      @products = @products.where("price < ?", 10)
+    end
+
+    if params[:search]
+      @products = @products.where("name iLIKE ? OR description iLIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
+
+    if params[:sort] == "price" && params[:sort_order] == "asc"
+      @products = @products.order(:price)
+    elsif params[:sort] == "price" && params[:sort_order] == "desc"
+      @products = @products.order(price: :desc)
+    end
+
     render "index.json.jb"
+
   end
 
   def show
