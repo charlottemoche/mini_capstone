@@ -6,8 +6,8 @@
   description: product.description,
   quantity: product.quantity,
   formatted: {
-    price: product.is_discounted?,
-    tax: product.tax,
-    total: product.total
+    discounted: product.is_discounted?,
+    tax: number_to_currency(product.tax),
+    total: number_to_currency(product.total)
   }
 }
