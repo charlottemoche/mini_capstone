@@ -5,6 +5,4 @@ class Api::SuppliersController < ApplicationController
     render "index.json.jb"
   end
 
-  def show 
-  end
 end
