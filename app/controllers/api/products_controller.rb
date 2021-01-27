@@ -33,6 +33,7 @@ class Api::ProductsController < ApplicationController
       price: params[:price],
       description: params[:description],
       quantity: params[:quantity],
+      supplier_id: params[:supplier_id],
     )
     if @product.save
       render "show.json.jb"
@@ -47,6 +48,7 @@ class Api::ProductsController < ApplicationController
     @product.price = params[:price] || @product.price
     @product.description = params[:description] || @product.description
     @product.quantity = params[:quantity] || @product.quantity
+    @product.supplier_id = params[:supplier_id] || @product.supplier_id
     if @product.save
       render "show.json.jb"
     else
@@ -61,3 +63,21 @@ class Api::ProductsController < ApplicationController
   end
 
 end
+
+
+Create an orders controller
+
+Define an add function
+
+Identify/search for a product
+
+Display product
+
+Make request to add product to cart if in stock
+
+Render message if product is out of stock depending on quantity selected
+
+Render message if product is successfully added to cart
+
+Make option to go to cart
+
