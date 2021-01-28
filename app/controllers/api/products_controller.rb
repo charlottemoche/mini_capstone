@@ -1,5 +1,6 @@
 class Api::ProductsController < ApplicationController
   
+  before_action :authenticate_admin, except: [:index, :show]
 
   def index
     @products = Product.all
@@ -63,21 +64,3 @@ class Api::ProductsController < ApplicationController
   end
 
 end
-
-
-Create an orders controller
-
-Define an add function
-
-Identify/search for a product
-
-Display product
-
-Make request to add product to cart if in stock
-
-Render message if product is out of stock depending on quantity selected
-
-Render message if product is successfully added to cart
-
-Make option to go to cart
-

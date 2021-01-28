@@ -1,7 +1,7 @@
 class Api::OrdersController < ApplicationController
-  
+
   before_action :authenticate_user
-  
+
   def index
     @orders = current_user.orders
     render "index.json.jb"
@@ -31,5 +31,4 @@ class Api::OrdersController < ApplicationController
       render json: {}, status: :unauthorized
     end
   end
-
 end
