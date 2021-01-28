@@ -4,6 +4,9 @@ class Api::ProductsController < ApplicationController
 
   def index
     @products = Product.all
+
+    if params[:category]
+
     if params[:discount]
       @products = @products.where("price < ?", 10)
     end
