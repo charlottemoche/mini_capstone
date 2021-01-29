@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery with: :exception, if: -> { request.format.html? }
   def current_user
     auth_headers = request.headers["Authorization"]

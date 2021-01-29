@@ -6,6 +6,9 @@ class Api::ProductsController < ApplicationController
     @products = Product.all
 
     if params[:category]
+      category = Category.find_by("name = ?", params[:category])
+      @products = category.products
+    end
 
     if params[:discount]
       @products = @products.where("price < ?", 10)
